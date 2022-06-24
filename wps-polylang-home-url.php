@@ -17,6 +17,8 @@ add_filter( 'request', 'init_wps_change_home_url' );
 function init_wps_change_home_url( $request ) {
     if ( isset( $_REQUEST['ixwps'] ) ) {
         if ( $_REQUEST['ixwps'] === 1 ) {
+        	// @todo remove trace once testing is over
+        	error_log( 'wps request' );
             add_filter( 'home_url', 'wps_home_url_filter', 10, 4 );
         }
     }
@@ -45,13 +47,10 @@ function wps_home_url_filter( $url, $path, $orig_scheme, $blog_id ){
                 // Pro API
                 // require_once ABSPATH . '/wp-content/plugins/polylang-pro/vendor/wpsyntex/polylang/include/api.php';
             }
-            
-            $log = $url . "  |  " . ": Start value of URL\n";
-            
-            error_log( $log, 3 );
+
             
             $url = pll_home_url();
-            
+            error_log( );
             $log = $url . "  |  " . ": End value of URL\n";
             
             error_log( $log, 3 );
