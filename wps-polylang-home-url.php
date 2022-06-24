@@ -40,6 +40,8 @@ function wps_home_url_filter( $url, $path, $orig_scheme, $blog_id ){
     
     if( !is_admin() ){
         if ( defined( 'POLYLANG_VERSION' ) ) {
+        	// @todo remove trace once testing is over
+        	error_log( 'polylang is active' );
             if ( !function_exists( 'pll_home_url' ) ) {
                 // Free API
                 require_once ABSPATH . '/wp-content/plugins/polylang/include/api.php';
@@ -50,10 +52,8 @@ function wps_home_url_filter( $url, $path, $orig_scheme, $blog_id ){
 
             
             $url = pll_home_url();
-            error_log( );
-            $log = $url . "  |  " . ": End value of URL\n";
-            
-            error_log( $log, 3 );
+            // @todo remove trace once testing is over
+            error_log( $url );
             
         }
     }
